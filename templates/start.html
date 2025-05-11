@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Start</title></head>
+<body>
+  <h2>Welcome!</h2>
+  <form method="post">
+    <label>Enter your age:</label><br>
+    <input type="number" name="age" min="5" max="120" step="1" required><br><br>
+    <input type="submit" value="Start Test">
+  </form>
+  {% if error %}
+    <p style="color:red">{{ error }}</p>
+  {% endif %}
+</body>
+</html>
