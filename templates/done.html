@@ -1,8 +1,68 @@
-<!DOCTYPE html>
-<html>
-<head><title>Done</title></head>
-<body>
-  <h1>Thank you for your participation!</h1>
-  <a href="{{ url_for('restart') }}"><button>Restart Test</button></a>
-</body>
-</html>
+    <!DOCTYPE html>
+    <html lang="fa">
+    <head>
+    <meta charset="UTF-8">
+    <title>پایان آزمون</title>
+    <style>
+        body {
+        font-family: 'Vazirmatn', sans-serif;
+        direction: rtl;
+        background-color: #f7f9fc;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        }
+
+        .container {
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        text-align: center;
+        max-width: 500px;
+        }
+
+        h1 {
+        color: #4CAF50;
+        }
+
+        p {
+        font-size: 18px;
+        margin: 20px 0;
+        }
+
+        .button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 20px;
+        text-decoration: none;
+        display: inline-block;
+        }
+
+        .button:hover {
+        background-color: #45a049;
+        }
+    </style>
+    <link href="https://cdn.fontcdn.ir/Font/Persian/Vazirmatn/Vazirmatn.css" rel="stylesheet">
+    </head>
+    <body>
+    <div class="container">
+        <h1>پایان آزمون</h1>
+        <p>از شرکت شما در این آزمون سپاسگزاریم.</p>
+
+        <!-- Optional: Restart Button -->
+        <a href="{{ url_for('restart') }}" class="button">شروع دوباره آزمون</a>
+
+        <!-- Optional: Admin-only CSV Download -->
+        {# <a href="{{ url_for('download_csv') }}" class="button">دانلود پاسخ‌ها (مدیر)</a> #}
+    </div>
+    </body>
+    </html>
