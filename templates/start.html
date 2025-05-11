@@ -1,15 +1,63 @@
 <!DOCTYPE html>
-<html>
-<head><title>Start</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <style>
+    body {
+      font-family: Verdana, sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      text-align: center;
+    }
+    input[type="number"] {
+      padding: 10px;
+      width: 100%;
+      margin: 10px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="submit"] {
+      padding: 10px 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background: #45a049;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
 <body>
-  <h2>Welcome!</h2>
-  <form method="post">
-    <label>Enter your age:</label><br>
-    <input type="number" name="age" min="5" max="120" step="1" required><br><br>
-    <input type="submit" value="Start Test">
-  </form>
-  {% if error %}
-    <p style="color:red">{{ error }}</p>
-  {% endif %}
+  <div class="container">
+    <h2>خوش آمدید</h2>
+    <p>در این تست تعدادی عکس به شما نمایش داده می‌شود<br>
+       برای هر سوال از ۱ تا۵ امتیاز بدهید</p>
+
+    <form method="post">
+      <input type="number" name="age" min="7" max="12" step="1" required placeholder="سن خود را وارد کنید">
+      <input type="submit" value="شروع آزمون">
+    </form>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+  </div>
 </body>
 </html>
