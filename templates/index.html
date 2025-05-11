@@ -1,22 +1,101 @@
 <!DOCTYPE html>
-<html>
-<head><title>Image Rating</title></head>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>ارزیابی تصویر</title>
+  <style>
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      direction: rtl;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      border: 1px solid #ccc;
+      margin: 20px 0;
+    }
+
+    .question {
+      margin: 20px 0;
+      text-align: right;
+    }
+
+    .options label {
+      margin: 0 10px;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .progress {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+  </style>
+
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazirmatn/Vazirmatn.css" rel="stylesheet">
+</head>
 <body>
-  <h2>Rate the Image</h2>
-  <img src="{{ url_for('static', filename='images/' + image) }}" width="500"><br><br>
+  <div class="container">
+    <div class="progress">تصویر {{ session["seen"]|length + 1 }} از {{ total }}</div>
 
-  <form method="post" action="{{ url_for('submit') }}">
-    <label>1. How arousing is this image?</label><br>
-    {% for i in range(1,6) %}
-      <input type="radio" name="question1" value="{{ i }}" required> {{ i }}
-    {% endfor %}<br><br>
+    <form method="post" action="{{ url_for('submit') }}">
 
-    <label>2. How pleasant is this image?</label><br>
-    {% for i in range(1,6) %}
-      <input type="radio" name="question2" value="{{ i }}" required> {{ i }}
-    {% endfor %}<br><br>
+      <img src="{{ url_for('static', filename='images/' + image) }}" alt="تصویر برای ارزیابی">
 
-    <input type="submit" value="Next">
-  </form>
+      <div class="question">
+        <label> این تصویر چقدر برای شما برانگیزاننده است؟</label><br>
+        <div class="options">
+          {% for i in range(1, 6) %}
+            <label><input type="radio" name="question1" value="{{ i }}" required> {{ i }}</label>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Show image again before question 2 -->
+      <img src="{{ url_for('static', filename='images/' + image) }}" alt="تصویر مجدد">
+
+      <div class="question">
+        <label> این تصویر چقدر خوشایند است؟</label><br>
+        <div class="options">
+          {% for i in range(1, 6) %}
+            <label><input type="radio" name="question2" value="{{ i }}" required> {{ i }}</label>
+          {% endfor %}
+        </div>
+      </div>
+
+      <input type="submit" value="بعدی">
+    </form>
+  </div>
 </body>
 </html>
